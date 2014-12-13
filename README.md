@@ -1,7 +1,7 @@
 plainstream
 ========
 
-Sometimes you just need a lot of text. Plainstream provides you with a plain text stream directly from Wikipedia in any of its supporting languages.
+Sometimes you just need a lot of text. Plainstream is a Python application that provides you with a plain text stream directly from Wikipedia in any of its supporting languages.
 
 Usage
 -----
@@ -22,26 +22,17 @@ Command line:
     optional arguments:
       -h, --help            show this help message and exit
       -l LANGUAGE, --language LANGUAGE
-                            Language to stream.
+                            Language code according to ISO_639-1, e.g. en, sv ...
       -w WORDS, --words WORDS
-                            Maximum number of words to print (approximate, only
-                            works for space-separated languages).
+                            Maximum number of words to print (only works for
+                            space-separated languages).
       -b BYTES, --bytes BYTES
-                            Maximum number of bytes to print (approximate).
+                            Maximum number of bytes to print.
 
 Installation
 ------------
 `python setup.py install`
 
-Requirements
-------------
-requests
-
 Compatibility
 -------------
-Tested on python 3.4
-
-Licence
--------
-
-MIT License.
+Tested on python 3.4 and 2.7.
