@@ -9,11 +9,11 @@ setuptools.setup(
     author_email="jimmy.callin@gmail.com",
 
     description="Do you need a lot of text for whatever reason? Plainstream provides you with a plain text stream coming directly from Wikipedia in any of its supporting languages.",
-    long_description=open('README.rst').read(),
+    long_description=open('README.md').read(),
 
     packages=setuptools.find_packages(),
 
-    install_requires=[],
+    install_requires=['requests'],
 
     classifiers=[
         'Development Status :: 2 - Pre-Alpha',
