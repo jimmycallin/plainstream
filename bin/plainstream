@@ -3,7 +3,7 @@ import plainstream
 import argparse
 
 parser = argparse.ArgumentParser(description="Stream text from Wikipedia.")
-parser.add_argument('-l', '--language', required=True, help='Language to stream.')
+parser.add_argument('-l', '--language', required=True, help='Language code according to ISO_639-1, e.g. en, sv ...')
 parser.add_argument('-w', '--words', type=int, help="Maximum number of words to print (only works for space-separated languages).", default=None)
 parser.add_argument('-b', '--bytes', type=int, help="Maximum number of bytes to print.", default=None)
 
