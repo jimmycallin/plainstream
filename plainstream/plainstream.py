@@ -10,8 +10,8 @@ def get_text(language, max_bytes=None, max_words=None):
     Returns a generator iteratively downloading text from Wikipedia dumps. 
     Parameters:
         language: Language code according to ISO_639-1, e.g. en, fr, sv, zh...
-        max_bytes: Maximum number of bytes to download (approximate).
-        max_words: Maximum number of words to download (approximate). Currently only works for languages with space-separated words.
+        max_bytes: Maximum number of bytes to download.
+        max_words: Maximum number of words to download. Currently only works for languages with space-separated words.
     """
     if language not in available_languages:
         raise RuntimeError("Language not supported.")
