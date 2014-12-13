@@ -1,14 +1,14 @@
 import setuptools
 
 setuptools.setup(
-    name="wikitext",
+    name="plainstream",
     version="0.1.0",
-    url="https://github.com/jimmycallin/wikitext",
+    url="https://github.com/jimmycallin/plainstream",
 
     author="Jimmy Callin",
     author_email="jimmy.callin@gmail.com",
 
-    description="Do you need a lot of text  for whatever reason? Wikitext provides you with a plain text stream coming directly from Wikipedia in any of its supporting languages.",
+    description="Do you need a lot of text for whatever reason? Plainstream provides you with a plain text stream coming directly from Wikipedia in any of its supporting languages.",
     long_description=open('README.rst').read(),
 
     packages=setuptools.find_packages(),
@@ -23,4 +23,6 @@ setuptools.setup(
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.3',
     ],
+
+    scripts=['bin/plainstream']
 )

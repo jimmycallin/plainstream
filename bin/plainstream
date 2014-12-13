@@ -1,0 +1,11 @@
+#!/usr/bin/env python3
+import plainstream
+import sys
+
+if __name__ == '__main__':
+    if len(sys.argv) != 3:
+        print("Usage: plainstream -l language")
+        sys.exit(1)
+    language = sys.argv[2]
+    for line in plainstream.get_text(language):
+        print(line)
