@@ -1,11 +1,15 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 import plainstream
-import sys
+import argparse
 
-if __name__ == '__main__':
-    if len(sys.argv) != 3:
-        print("Usage: plainstream -l language")
-        sys.exit(1)
-    language = sys.argv[2]
-    for line in plainstream.get_text(language):
-        print(line)
+parser = argparse.ArgumentParser(description="Stream text from Wikipedia.")
+parser.add_argument('-l', '--language', required=True, help='Language to stream.')
+parser.add_argument('-w', '--words', type=int, help="Maximum number of words to print (approximate, only works for space-separated languages).", default=None)
+parser.add_argument('-b', '--bytes', type=int, help="Maximum number of bytes to print (approximate).", default=None)
+
+args = parser.parse_args()
+
+for line in plainstream.get_text(language=args.language,
+                                 max_bytes=args.bytes,
+                                 max_words=args.words):
+    print(line)

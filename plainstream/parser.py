@@ -488,7 +488,7 @@ def parse(input):
             colon = title.find(':')
             if (colon < 0 or title[:colon] in acceptedNamespaces) and \
                     not redirect:
-                yield "\n".join(clean(" ".join(page)))
+                yield "\n".join(clean("".join(page)))
             id = None
             page = []
         elif tag == 'base':
