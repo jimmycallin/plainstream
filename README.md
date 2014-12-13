@@ -36,3 +36,9 @@ Installation
 Compatibility
 -------------
 Tested on python 3.4 and 2.7.
+
+Acknowledgements
+----------------
+
+Thanks to the developers of WikiExtractor.py, [Medialab](http://medialab.di.unipi.it/wiki/Wikipedia_Extractor), for providing the Wikipedia plain text parser. 
+
