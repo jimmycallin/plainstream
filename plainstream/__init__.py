@@ -1,4 +1,4 @@
-"""wikitext - Do you need a lot of text  for whatever reason? Wikitext provides you with a plain text stream coming directly from Wikipedia in any of its supporting languages."""
+"""Plainstream - Do you need a lot of text  for whatever reason? Plainstream provides you with a plain text stream coming directly from Wikipedia in any of its supporting languages."""
 
 from .plainstream import get_text, available_languages
 
