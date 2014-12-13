@@ -4,8 +4,8 @@ import argparse
 
 parser = argparse.ArgumentParser(description="Stream text from Wikipedia.")
 parser.add_argument('-l', '--language', required=True, help='Language to stream.')
-parser.add_argument('-w', '--words', type=int, help="Maximum number of words to print (approximate, only works for space-separated languages).", default=None)
-parser.add_argument('-b', '--bytes', type=int, help="Maximum number of bytes to print (approximate).", default=None)
+parser.add_argument('-w', '--words', type=int, help="Maximum number of words to print (only works for space-separated languages).", default=None)
+parser.add_argument('-b', '--bytes', type=int, help="Maximum number of bytes to print.", default=None)
 
 args = parser.parse_args()
 
