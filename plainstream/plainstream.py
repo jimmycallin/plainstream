@@ -24,7 +24,7 @@ def get_text(language, max_bytes=None, max_words=None):
         for line in parser.parse(text):
             if (max_bytes and nbytes > max_bytes) \
                 or (max_words and nwords > max_words):
-                raise StopIteration
+                return
 
             nbytes += sys.getsizeof(line)
             nwords += len(line.split(" "))
