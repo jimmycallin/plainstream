@@ -1,15 +1,41 @@
 #!/usr/bin/env python
 import plainstream
+import sys
 import argparse
 
 parser = argparse.ArgumentParser(description="Stream text from Wikipedia.")
-parser.add_argument('-l', '--language', required=True, help='Language code according to ISO_639-1, e.g. en, sv ...')
-parser.add_argument('-w', '--words', type=int, help="Maximum number of words to print (only works for space-separated languages).", default=None)
-parser.add_argument('-b', '--bytes', type=int, help="Maximum number of bytes to print.", default=None)
+parser.add_argument('-l', '--language', required=True,
+                    help='Language code according to ISO_639-1, e.g. en, sv')
+parser.add_argument('-w', '--words', type=int,
+                    help="Maximum number of words to print \
+                    (only works for space-separated languages).", default=None)
+parser.add_argument('-b', '--bytes', type=int,
+                    help="Maximum number of bytes to print.", default=None)
+parser.add_argument('--tokenize',
+                    action="store_true",
+                    help="Tokenize the text and output one word per\
+                                     line, sentences split with newline.",
+                    default=False)
+parser.add_argument('--train_sentence_tokenizer',
+                    action="store_true",
+                    help="For non-English text it might raise the quality to \
+                          train the sentence segmenter. \
+                          This increases the startup time.",
+                    default=False)
 
 args = parser.parse_args()
 
-for line in plainstream.get_text(language=args.language,
-                                 max_bytes=args.bytes,
-                                 max_words=args.words):
-    print(line)
+try:
+    for sentence in plainstream.get_text(language=args.language,
+                                         max_bytes=args.bytes,
+                                         max_words=args.words,
+                                         tokenize=args.tokenize,
+                                         train_sentence_tokenizer=args.train_sentence_tokenizer):
+        if args.tokenize:
+            for word in sentence:
+                print(word)
+            print()
+        else:
+            print(sentence)
+except KeyboardInterrupt:
+    sys.exit(0)
