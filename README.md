@@ -8,8 +8,8 @@ Usage
 
 As a Python module:
 
-    import plaintext
-    for line in plaintext.get_text('en'):
+    import plainstream
+    for line in plainstream.get_text('en'):
         print(line)
 
 
