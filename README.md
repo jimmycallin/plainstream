@@ -35,7 +35,7 @@ Installation
 
 Compatibility
 -------------
-Tested on python 3.4 and 2.7.
+Tested on python 3.4.
 
 Acknowledgements
 ----------------
