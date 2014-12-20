@@ -12,6 +12,7 @@ available_languages = {'aa','ab','af','ak','als','am','an','ang','ar','arc','as'
 
 available_outputs = {'plaintext'}
 
+tokenizer = {}
 
 def get_text(language, max_bytes=None, max_words=None, tokenize=False, train_sentence_tokenizer=False, output='raw'):
     """
@@ -30,7 +31,8 @@ def get_text(language, max_bytes=None, max_words=None, tokenize=False, train_sen
         train_text = None
         if train_sentence_tokenizer:
             train_text = get_text(language, max_words=10000, tokenize=False, train_sentence_tokenizer=False, output='plaintext')
-        tokenizer = Tokenizer(language, train_text_gen=train_text)
+        if language not in tokenizer:
+            tokenizer[language] = Tokenizer(language, train_text_gen=train_text)
 
     dump_url = "http://dumps.wikimedia.org/{}wiki/latest/{}wiki-latest-pages-articles.xml.bz2".format(language, language)
     req = requests.get(dump_url, stream=True)
@@ -45,7 +47,7 @@ def get_text(language, max_bytes=None, max_words=None, tokenize=False, train_sen
             nbytes += sys.getsizeof(line)
             nwords += len(line.split(" "))
             if tokenize:
-                sentences = tokenizer.tokenize(line)
+                sentences = tokenizer[language].tokenize(line)
                 for sentence in sentences:
                     yield sentence
             else:

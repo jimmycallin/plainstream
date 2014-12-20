@@ -12,9 +12,10 @@ class Tokenizer(object):
         train_text_gen: A generator of training text for the sentence tokenizer.
         """
         self.language = language
-
+        self.train_text_gen = train_text_gen
+        
         if train_text_gen:
-            self.sent_tokenizer = _train_sentence_tokenizer()
+            self.sent_tokenizer = self._train_sentence_tokenizer()
         else:
             self.sent_tokenizer = PunktSentenceTokenizer()
 
