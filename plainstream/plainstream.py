@@ -13,7 +13,7 @@ available_languages = {'aa','ab','af','ak','als','am','an','ang','ar','arc','as'
 available_outputs = {'plaintext'}
 
 
-def get_text(language, max_bytes=None, max_words=None, tokenize=False, train_sentence_tokenizer=False, output='plaintext'):
+def get_text(language, max_bytes=None, max_words=None, tokenize=False, train_sentence_tokenizer=False, output='raw'):
     """
     Returns a generator iteratively downloading text from Wikipedia dumps. 
     Parameters:
