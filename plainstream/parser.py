@@ -31,14 +31,14 @@
 # =============================================================================
 
 
-import sys
-import gc
-import getopt
-import urllib.request, urllib.parse, urllib.error
 import re
-import bz2
-import os.path
-from html.entities import name2codepoint
+
+try:
+    from html.entities import name2codepoint
+except ImportError:
+    from htmlentitydefs import name2codepoint
+
+
 
 ### PARAMS ####################################################################
 
@@ -496,12 +496,3 @@ def parse(input):
             # /mediawiki/siteinfo/base
             base = m.group(3)
             prefix = base[:base.rfind("/")]
-
-
-def main():
-    for line in parse(sys.argv[1]):
-        print(line)
-    
-
-if __name__ == '__main__':
-    main()
