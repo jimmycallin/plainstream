@@ -40,15 +40,23 @@ def get_text(language, max_bytes=None, max_words=None, tokenize=False, train_sen
         nbytes = 0
         nwords = 0
         for line in parser.parse(text):
-            if (max_bytes and nbytes > max_bytes) \
-                or (max_words and nwords > max_words):
-                return
 
-            nbytes += sys.getsizeof(line)
-            nwords += len(line.split(" "))
+
+            
             if tokenize:
                 sentences = tokenizer[language].tokenize(line)
                 for sentence in sentences:
+                    if (max_bytes and nbytes >= max_bytes) \
+                        or (max_words and nwords >= max_words):
+                        return
+                    nbytes += sys.getsizeof(sentence)
+                    nwords += len(sentence)
+
                     yield sentence
             else:
+                if (max_bytes and nbytes > max_bytes) \
+                    or (max_words and nwords > max_words):
+                    return
+                nbytes += sys.getsizeof(line)
+                nwords += len(line.split(" "))
                 yield line
