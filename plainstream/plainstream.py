@@ -14,7 +14,13 @@ available_outputs = {'plaintext'}
 
 tokenizer = {}
 
-def get_text(language, max_bytes=None, max_words=None, tokenize=False, train_sentence_tokenizer=False, output='raw'):
+def get_text(language, 
+             max_bytes=None, 
+             max_words=None, 
+             tokenize=False, 
+             normalize=False,
+             train_sentence_tokenizer=False, 
+             output='raw'):
     """
     Returns a generator iteratively downloading text from Wikipedia dumps. 
     Parameters:
@@ -23,6 +29,7 @@ def get_text(language, max_bytes=None, max_words=None, tokenize=False, train_sen
         max_words: Maximum number of words to download. Currently only works for languages with space-separated words.
         tokenize: Tokenize the text into word units. Currently uses the Penn Trebank tokenizer and Punkt sentence segmenter, 
                   and requires you to have NLTK installed. Outputted as one word per line, with two line breaks 
+        normalize: Convert text to lower case. 
     """
     if language not in available_languages:
         raise RuntimeError("Language not supported.")
@@ -32,7 +39,7 @@ def get_text(language, max_bytes=None, max_words=None, tokenize=False, train_sen
         if train_sentence_tokenizer:
             train_text = get_text(language, max_words=10000, tokenize=False, train_sentence_tokenizer=False, output='plaintext')
         if language not in tokenizer:
-            tokenizer[language] = Tokenizer(language, train_text_gen=train_text)
+            tokenizer[language] = Tokenizer(language, normalize=normalize, train_text_gen=train_text)
 
     dump_url = "http://dumps.wikimedia.org/{}wiki/latest/{}wiki-latest-pages-articles.xml.bz2".format(language, language)
     req = requests.get(dump_url, stream=True)
@@ -59,4 +66,7 @@ def get_text(language, max_bytes=None, max_words=None, tokenize=False, train_sen
                     return
                 nbytes += sys.getsizeof(line)
                 nwords += len(line.split(" "))
-                yield line
+                if normalize:
+                    yield line.lower()
+                else:
+                    yield line

@@ -16,6 +16,10 @@ parser.add_argument('--tokenize',
                     help="Tokenize the text and output one word per\
                                      line, sentences split with newline.",
                     default=False)
+parser.add_argument('--normalize',
+                    action="store_true",
+                    help="Convert to lower case",
+                    default=False)
 parser.add_argument('--train_sentence_tokenizer',
                     action="store_true",
                     help="For non-English text it might raise the quality to \
@@ -30,6 +34,7 @@ try:
                                          max_bytes=args.bytes,
                                          max_words=args.words,
                                          tokenize=args.tokenize,
+                                         normalize=args.normalize,
                                          train_sentence_tokenizer=args.train_sentence_tokenizer):
         if args.tokenize:
             for word in sentence:
