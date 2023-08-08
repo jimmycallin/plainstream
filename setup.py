@@ -6,7 +6,6 @@ setuptools.setup(
     url="https://github.com/jimmycallin/plainstream",
 
     author="Jimmy Callin",
-    author_email="jimmy.callin@gmail.com",
 
     description="Do you need a lot of text for whatever reason? Plainstream provides you with a plain text stream coming directly from Wikipedia in any of its supporting languages.",
     long_description=open('README.md').read(),
