@@ -41,7 +41,7 @@ def get_text(language,
         if language not in tokenizer:
             tokenizer[language] = Tokenizer(language, normalize=normalize, train_text_gen=train_text)
 
-    dump_url = "http://dumps.wikimedia.org/{}wiki/latest/{}wiki-latest-pages-articles.xml.bz2".format(language, language)
+    dump_url = "https://dumps.wikimedia.org/{}wiki/latest/{}wiki-latest-pages-articles.xml.bz2".format(language, language)
     req = requests.get(dump_url, stream=True)
     with bz2.open(req.raw) as text:
         nbytes = 0
